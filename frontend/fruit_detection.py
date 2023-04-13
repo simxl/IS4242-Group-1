@@ -1,3 +1,4 @@
+import os
 import cv2
 import streamlit as st
 import pandas as pd
@@ -19,8 +20,16 @@ def detect_fruits(image, model, classes):
     return pred
 
 if __name__ == '__main__':
+    # Get the absolute path of the current directory
+    current_dir = os.path.abspath(os.path.dirname(__file__))
 
-    model_path = './model_aug.pkl'
+    # Get the absolute path of the parent directory of the current directory
+    parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
+
+    # Construct the path to the model file
+    model_path = os.path.join(parent_dir, "frontend", "model_aug.pkl")
+
+    # model_path = 'model_aug.pkl'
 
     # loading the Random Forest model
     with open(model_path, 'rb') as file:
